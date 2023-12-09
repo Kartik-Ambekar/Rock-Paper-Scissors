@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .button {
+            border-radius: 90px;
+            border-color: white;
+            border: 7px solid white;
+            background-color: transparent;
+            padding: 30px 30px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissor</title>
+</head>
+
+<body>
+    <h1>Rock Paper Scissor</h1>
+    <div class="flex">
+        <button class="button" onclick="rockr()"><img src="rock.png" width="100px" height="100px"></button>
+        <button class="button" onclick="paperr()"><img src="paper.png" width="100px" height="100px"></button>
+        <button class="button" onclick="scissorr()"><img src="scissor.png" width="100px" height="100px"></button>
+    </div>
+    <p id="result1"></p>
+    <p id="result2">Scores: 0</p>
+
+    <button onclick="reset()">Reset Scores</button>
+
+
+    <script>
+        let computerChoice;
+        let WLD = {
+            win: 0,
+            loss: 0,
+            draw: 0
+        };
+
+        function rockr() {
+            computerChoice = Math.random();
+            if (computerChoice <= 1 / 3) {
+                computerChoice = 1;
+                console.log('rock');
+            } else if (computerChoice <= 2 / 3) {
+                computerChoice = 2;
+                console.log('paper');
+            } else {
+                computerChoice = 3;
+                console.log('scissor');
+            }
+            if (computerChoice === 1) {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="rock.png" height="40px" width="40px"> &nbsp <img src ="rock.png" height="40px" width="40px"> YOU: DRAW';
+                WLD.draw += 1;
+                updateScore()
+
+                
+
+            }
+            else if (computerChoice == 2) {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="paper.png" height="40px" width="40px"> &nbsp <img src ="rock.png" height="40px" width="40px"> YOU: LOSS';
+                WLD.loss += 1;
+                updateScore()
+
+                
+
+            }
+            else {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="scissor.png" height="40px" width="40px"> &nbsp <img src ="rock.png" height="40px" width="40px">YOU: WIN';
+                WLD.win += 1;
+                updateScore()
+                
+
+            }
+
+        }
+        function updateScore() {
+            document.getElementById("result2").innerHTML = "WINS: " + WLD.win + ", LOSS: " + WLD.loss + ", DRAW: " + WLD.draw;
+
+
+        }
+        function paperr() {
+            computerChoice = Math.random();
+            if (computerChoice <= 1 / 3) {
+                computerChoice = 1;
+                console.log('rock');
+            } else if (computerChoice <= 2 / 3) {
+                computerChoice = 2;
+                console.log('paper');
+            } else {
+                computerChoice = 3;
+                console.log('scissor');
+            }
+            if (computerChoice === 1) {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="rock.png" height="40px" width="40px"> &nbsp <img src ="paper.png" height="40px" width="40px">YOU: WIN';
+                WLD.win += 1;
+                updateScore()
+            }
+            else if (computerChoice == 2) {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="paper.png" height="40px" width="40px"> &nbsp <img src ="paper.png" height="40px" width="40px">YOU: DRAW';
+                WLD.draw += 1;
+                updateScore()
+            }
+            else {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="scissor.png" height="40px" width="40px"> &nbsp <img src ="paper.png" height="40px" width="40px"> YOU: LOSS';
+                WLD.loss += 1;
+                updateScore()
+            }
+
+        }
+
+        function scissorr() {
+            computerChoice = Math.random(); 
+            if (computerChoice <= 1 / 3) {
+                computerChoice = 1;
+                console.log('rock');
+            } else if (computerChoice <= 2 / 3) {
+                computerChoice = 2;
+                console.log('paper');
+            } else {
+                computerChoice = 3;
+                console.log('scissor');
+            }
+            if (computerChoice === 1) {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="rock.png" height="40px" width="40px"> &nbsp <img src ="scissor.png" height="40px" width="40px"> YOU: LOSS';
+                WLD.loss += 1;
+                updateScore()
+
+                }
+            else if (computerChoice == 2) {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="paper.png" height="40px" width="40px"> &nbsp <img src ="scissor.png" height="40px" width="40px"> YOU: WIN';
+                WLD.win += 1;
+                updateScore()
+
+                
+
+            }
+            else {
+                document.getElementById("result1").innerHTML = 'COMPUTER <img src="scissor.png" height="40px" width="40px"> &nbsp <img src ="scissor.png" height="40px" width="40px">YOU: DRAW';
+                WLD.draw += 1;
+                updateScore()
+
+                
+
+            }
+
+        }
+        localStorage.setItem('Score', JSON.stringify(WLD));
+        function reset() {
+            WLD.draw = 0;
+            WLD.loss = 0;
+            WLD.win = 0;
+            updateScore()
+
+           }
+
+    </script>
+</body>
+
+</html>
